@@ -1,0 +1,49 @@
+@import "./styles/variables.scss";
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  background-color: $VeryLightGray;
+
+  .heroSection {
+    display: flex;
+    justify-content: space-between;
+    background: url("./assets/bg-desktop-light.jpg") no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 33%;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    .titleContainer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 40%;
+      margin: 0 auto;
+      margin-bottom: 170px;
+      .heroText {
+        color: #fff;
+        font-size: 45px;
+        font-weight: 700;
+      }
+      .heroIcon {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+
+  .toDoSection {
+    width: 40%;
+    margin: 0 auto;
+    position: absolute;
+    top: 18%;
+  }
+}

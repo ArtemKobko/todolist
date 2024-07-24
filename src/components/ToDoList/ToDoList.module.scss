@@ -1,0 +1,41 @@
+@import "../../styles/variables.scss";
+
+.toDoContainer {
+  width: 100%;
+  margin: 0 auto;
+
+  .taskInput {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    padding: 25px;
+
+    .circle {
+      width: 30px;
+      height: 30px;
+      border: 2px solid #ccc;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      margin-right: 15px;
+    }
+
+    input {
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      color: $VeryDarkGrayishBlue;
+    }
+  }
+
+  .taskList {
+    // :first-child {
+    //   border-radius: 5px 5px 0 0;
+    // }
+  }
+}
