@@ -11,7 +11,7 @@
     background: #fff;
     margin-bottom: 20px;
     border-radius: 5px;
-    padding: 25px;
+    padding: 15px 25px;
 
     .circle {
       width: 30px;
@@ -25,17 +25,20 @@
       margin-right: 15px;
     }
 
-    input {
+    .taskInputField {
       width: 100%;
       border: none;
       border-radius: 5px;
       color: $VeryDarkGrayishBlue;
-    }
-  }
+      padding: 10px 0;
 
-  .taskList {
-    // :first-child {
-    //   border-radius: 5px 5px 0 0;
-    // }
+      &:focus,
+      &:active,
+      &:hover {
+        border: none;
+        outline: none;
+        box-shadow: none;
+      }
+    }
   }
 }

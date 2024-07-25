@@ -1,4 +1,4 @@
-@import "./styles/variables.scss";
+@import "../../styles/variables.scss";
 
 .mainContainer {
   display: flex;
@@ -13,7 +13,7 @@
   .heroSection {
     display: flex;
     justify-content: space-between;
-    background: url("./assets/bg-desktop-light.jpg") no-repeat;
+    background: url("../../assets/bg-desktop-light.jpg") no-repeat;
     background-size: cover;
     width: 100%;
     height: 33%;

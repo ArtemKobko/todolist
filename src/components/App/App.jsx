@@ -1,6 +1,6 @@
 import styles from "./App.module.scss";
-import ToDoList from "./components/ToDoList/ToDoList";
-import IconMoon from "./assets/icon-moon.svg";
+import ToDoList from "../ToDoList/ToDoList";
+import IconMoon from "../../assets/icon-moon.svg";
 
 function App() {
   return (
