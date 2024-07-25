@@ -6,28 +6,35 @@ import Filter from "../Filter/Filter";
 export default function ToDoList() {
   const [task, setTask] = useState("");
   const [allTasks, setAllTasks] = useState([
-    "task1",
-    "task2",
-    "task3",
-    "task4",
+    { id: 1, order: 1, name: "task1", checked: false },
+    { id: 2, order: 2, name: "task2", checked: false },
+    { id: 3, order: 3, name: "task3", checked: false },
+    { id: 4, order: 4, name: "task4", checked: false },
   ]);
-  const [completedTasks, setCompletedTasks] = useState({});
+  const [currentTask, setCurrentTask] = useState(null);
   const [filter, setFilter] = useState("all");
 
-  const handleCheckboxChange = task => {
-    setCompletedTasks(prevState => ({
-      ...prevState,
-      [task]: !prevState[task],
-    }));
+  const handleCheckboxChange = taskId => {
+    setAllTasks(prevTasks =>
+      prevTasks.map(task =>
+        task.id === taskId ? { ...task, checked: !task.checked } : task,
+      ),
+    );
   };
 
-  const handleRemove = task => {
-    setAllTasks(prevTasks => prevTasks.filter(t => t !== task));
+  const handleRemove = taskId => {
+    setAllTasks(prevTasks => prevTasks.filter(task => task.id !== taskId));
   };
 
   const handleAddTask = () => {
     if (task.trim()) {
-      setAllTasks(prevTasks => [...prevTasks, task.trim()]);
+      const newTask = {
+        id: Date.now(), // Using timestamp as a unique ID
+        order: allTasks.length + 1,
+        name: task.trim(),
+        checked: false,
+      };
+      setAllTasks(prevTasks => [...prevTasks, newTask]);
       setTask("");
     }
   };
@@ -40,23 +47,48 @@ export default function ToDoList() {
   };
 
   const clearCompletedTasks = () => {
-    setAllTasks(prevTasks => prevTasks.filter(task => !completedTasks[task]));
-    setCompletedTasks({});
+    setAllTasks(prevTasks => prevTasks.filter(task => !task.checked));
   };
 
   const filteredTasks = () => {
     switch (filter) {
       case "active":
-        return allTasks.filter(task => !completedTasks[task]);
+        return allTasks.filter(task => !task.checked);
       case "completed":
-        return allTasks.filter(task => completedTasks[task]);
+        return allTasks.filter(task => task.checked);
       default:
         return allTasks;
     }
   };
 
   const remainingTasks =
-    allTasks.length - Object.values(completedTasks).filter(Boolean).length;
+    allTasks.length - allTasks.filter(task => task.checked).length;
+
+  const handleDragStart = (e, task) => {
+    setCurrentTask(task);
+  };
+
+  const handleDragOver = e => {
+    e.preventDefault();
+  };
+
+  const handleDrop = (e, targetTask) => {
+    e.preventDefault();
+    if (!currentTask) return;
+
+    const updatedTasks = allTasks
+      .map(task => {
+        if (task.id === currentTask.id)
+          return { ...task, order: targetTask.order };
+        if (task.id === targetTask.id)
+          return { ...task, order: currentTask.order };
+        return task;
+      })
+      .sort((a, b) => a.order - b.order);
+
+    setAllTasks(updatedTasks);
+    setCurrentTask(null);
+  };
 
   return (
     <div className={styles.toDoContainer}>
@@ -72,15 +104,25 @@ export default function ToDoList() {
         />
       </div>
       <div className={styles.taskList}>
-        {filteredTasks().map(task => (
-          <CustomInput
-            key={task}
-            label={task}
-            checked={completedTasks[task] || false}
-            setChecked={() => handleCheckboxChange(task)}
-            onRemove={() => handleRemove(task)}
-          />
-        ))}
+        {filteredTasks()
+          .sort((a, b) => a.order - b.order)
+          .map(task => (
+            <div
+              key={task.id}
+              draggable
+              onDragStart={e => handleDragStart(e, task)}
+              onDragOver={handleDragOver}
+              onDrop={e => handleDrop(e, task)}
+              className={styles.draggableItem}
+            >
+              <CustomInput
+                label={task.name}
+                checked={task.checked}
+                setChecked={() => handleCheckboxChange(task.id)}
+                onRemove={() => handleRemove(task.id)}
+              />
+            </div>
+          ))}
       </div>
       <Filter
         filter={filter}

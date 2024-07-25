@@ -3,6 +3,9 @@
 .toDoContainer {
   width: 100%;
   margin: 0 auto;
+  ul {
+    list-style-type: none;
+  }
 
   .taskInput {
     display: flex;

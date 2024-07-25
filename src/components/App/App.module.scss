@@ -45,5 +45,11 @@
     margin: 0 auto;
     position: absolute;
     top: 18%;
+
+    .dragText {
+      margin-top: 50px;
+      color: $DarkGrayishBlue;
+      text-align: center;
+    }
   }
 }

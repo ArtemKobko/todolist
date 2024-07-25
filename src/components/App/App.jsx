@@ -13,6 +13,7 @@ function App() {
       </div>
       <div className={styles.toDoSection}>
         <ToDoList />
+        <p className={styles.dragText}>Drag and drop to reorder list</p>
       </div>
     </div>
   );
