@@ -1,11 +1,11 @@
-$grid-breakpoints: (
-  mobile: 375,
-  desktop: 1440,
-);
+$mobileSmall: 440px;
+$mobile: 768px;
+$tablet: 1024px;
+$desktopSmall: 1280px;
+$desktop: 1440px;
 
 $BrightBlue: hsl(220, 98%, 61%);
 $CheckBackground: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
-
 $VeryLightGray: hsl(0, 0%, 98%);
 $VeryLightGrayisBlue: hsl(236, 33%, 92%);
 $LightGrayishBlue: hsl(233, 11%, 84%);

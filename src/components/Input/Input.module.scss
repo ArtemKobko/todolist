@@ -1,15 +1,20 @@
 @import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
 
 .customInput {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid $DarkGrayishBlue;
+  border-bottom: 1px solid $VeryLightGrayisBlue;
   width: 100%;
-  padding: 25px;
+  padding: 22px;
   color: $VeryDarkGrayishBlue;
   background: #fff;
   position: relative;
+  margin-bottom: 2px;
 
+  @include lessThan($tablet) {
+    padding: 15px;
+  }
   &:hover .removeButton {
     display: block;
   }
@@ -44,9 +49,16 @@
 
 .removeButton {
   cursor: pointer;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   display: none;
+  @include lessThan($mobile) {
+    width: 16px;
+    height: 16px;
+  }
+  @include lessThan($tablet) {
+    display: block;
+  }
 }
 
 .checked {

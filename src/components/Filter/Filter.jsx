@@ -1,40 +1,38 @@
 import styles from "./Filter.module.scss";
+import FilterOption from "./FilterOption";
 
 const Filter = ({ filter, setFilter, clearCompletedTasks, remainingTasks }) => {
+  const filterOptions = [
+    { label: "All", value: "all" },
+    { label: "Active", value: "active" },
+    { label: "Completed", value: "completed" },
+  ];
+
   return (
     <div className={styles.filterContainer}>
       <div className={styles.quantityOfTasks}>{remainingTasks} items left</div>
       <div className={styles.filterButtons}>
-        <label className={filter === "all" ? styles.active : ""}>
-          <input
-            type="radio"
-            name="filter"
-            checked={filter === "all"}
-            onChange={() => setFilter("all")}
+        {filterOptions.map(option => (
+          <FilterOption
+            key={option.value}
+            label={option.label}
+            isActive={filter === option.value}
+            onChange={() => setFilter(option.value)}
           />
-          All
-        </label>
-        <label className={filter === "active" ? styles.active : ""}>
-          <input
-            type="radio"
-            name="filter"
-            checked={filter === "active"}
-            onChange={() => setFilter("active")}
-          />
-          Active
-        </label>
-        <label className={filter === "completed" ? styles.active : ""}>
-          <input
-            type="radio"
-            name="filter"
-            checked={filter === "completed"}
-            onChange={() => setFilter("completed")}
-          />
-          Completed
-        </label>
+        ))}
       </div>
       <div className={styles.clearButton} onClick={clearCompletedTasks}>
         Clear Completed
+      </div>
+      <div className={styles.filterButtonsMobile}>
+        {filterOptions.map(option => (
+          <FilterOption
+            key={option.value}
+            label={option.label}
+            isActive={filter === option.value}
+            onChange={() => setFilter(option.value)}
+          />
+        ))}
       </div>
     </div>
   );

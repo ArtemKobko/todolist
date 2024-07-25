@@ -1,4 +1,5 @@
 @import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
 
 .mainContainer {
   display: flex;
@@ -21,21 +22,56 @@
     top: 0;
     left: 0;
 
+    @include lessThan($mobileSmall) {
+      background: url("../../assets/bg-mobile-light.jpg") no-repeat;
+      background-size: cover;
+    }
+
     .titleContainer {
       display: flex;
       justify-content: space-between;
       align-items: center;
       width: 40%;
       margin: 0 auto;
-      margin-bottom: 170px;
+      margin-bottom: 140px;
+      @include lessThan($desktopSmall) {
+        width: 50%;
+      }
+
+      @include lessThan($tablet) {
+        width: 60%;
+      }
+
+      @include lessThan($mobile) {
+        width: 90%;
+      }
+
       .heroText {
         color: #fff;
         font-size: 45px;
         font-weight: 700;
+
+        @include lessThan($tablet) {
+          font-size: 40px;
+        }
+
+        @include lessThan($mobile) {
+          font-size: 35px;
+        }
       }
+
       .heroIcon {
         width: 40px;
         height: 40px;
+        @include lessThan($tablet) {
+          width: 35px;
+          height: 35px;
+        }
+
+        @include lessThan($mobile) {
+          width: 30px;
+          height: 30px;
+        }
       }
     }
   }
@@ -46,10 +82,25 @@
     position: absolute;
     top: 18%;
 
+    @include lessThan($desktopSmall) {
+      width: 50%;
+    }
+
+    @include lessThan($tablet) {
+      width: 60%;
+    }
+
+    @include lessThan($mobile) {
+      width: 90%;
+    }
+
     .dragText {
       margin-top: 50px;
       color: $DarkGrayishBlue;
       text-align: center;
+      @include lessThan($mobile) {
+        margin-top: 110px;
+      }
     }
   }
 }

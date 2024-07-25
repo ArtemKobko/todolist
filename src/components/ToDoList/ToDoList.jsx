@@ -6,10 +6,7 @@ import Filter from "../Filter/Filter";
 export default function ToDoList() {
   const [task, setTask] = useState("");
   const [allTasks, setAllTasks] = useState([
-    { id: 1, order: 1, name: "task1", checked: false },
-    { id: 2, order: 2, name: "task2", checked: false },
-    { id: 3, order: 3, name: "task3", checked: false },
-    { id: 4, order: 4, name: "task4", checked: false },
+    { id: 1, order: 1, name: "Smile, today is a good day ;)", checked: false },
   ]);
   const [currentTask, setCurrentTask] = useState(null);
   const [filter, setFilter] = useState("all");
@@ -29,7 +26,7 @@ export default function ToDoList() {
   const handleAddTask = () => {
     if (task.trim()) {
       const newTask = {
-        id: Date.now(), // Using timestamp as a unique ID
+        id: Date.now(),
         order: allTasks.length + 1,
         name: task.trim(),
         checked: false,
